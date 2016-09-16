@@ -1,5 +1,7 @@
 defmodule RocketLaunches.Subscription do
   use RocketLaunches.Web, :model
+  alias RocketLaunches.Repo
+  alias RocketLaunches.Subscription
 
   schema "subscriptions" do
     field :locations, {:array, :string}
@@ -17,5 +19,9 @@ defmodule RocketLaunches.Subscription do
     struct
     |> cast(params, [:locations, :rockets, :phone_number, :email_address])
     |> validate_required([:phone_number])
+  end
+
+  def all do
+     Repo.all Subscription
   end
 end

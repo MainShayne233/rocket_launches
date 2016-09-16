@@ -2,8 +2,8 @@ defmodule RocketLaunches.Notification do
   alias RocketLaunches.Subscription
   alias RocketLaunches.Repo
 
-  def send_notifications do
-     Repo.all Subscription
+  def send do
+     Subscription.all
      |> IO.inspect
   end
 

@@ -1,16 +1,16 @@
 defmodule RocketLaunches.Data do
   alias RocketLaunches.Rocket
   alias RocketLaunches.Location
+  alias RocketLaunches.Data
+  alias RocketLaunches.Launch
 
   def update do
     { :ok, data } = "https://launchlibrary.net/1.1/launch/next/50"
                     |> get
-    launches = data["launches"]
+    launches = Launch.from(data)
     launches
-    |> Enum.map(&(&1["rocket"]))
     |> Rocket.update
     launches
-    |> Enum.map(&(&1["location"]))
     |> Location.update
 
     :ok

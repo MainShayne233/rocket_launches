@@ -9,7 +9,7 @@ defmodule RocketLaunches.SubscriptionController do
     response = case Repo.insert(changeset) do
       { :ok, _ } ->
         "success"
-      anything ->
+      _ ->
         "failure"
     end
     json conn, response

@@ -18,10 +18,10 @@ defmodule RocketLaunches.Rocket do
     |> validate_required([:name])
   end
 
-  def update rockets do
+  def update launches do
     Repo.delete_all Rocket
-    rockets
-    |> Enum.map(&(&1["name"]))
+    launches
+    |> Enum.map(&(Rocket.for(&1)))
     |> Enum.uniq
     |> Enum.each(fn (rocket_name) ->
       %Rocket{}
@@ -31,7 +31,7 @@ defmodule RocketLaunches.Rocket do
     :ok
   end
 
-  def from data do
-     
+  def for launch do
+    launch["rocket"]["name"]
   end
 end

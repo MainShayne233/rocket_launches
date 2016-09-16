@@ -1,9 +1,11 @@
 #logo {
   width: 684px;
-  height: 306px;
+  height: 200px;
+  background-position: center;
   margin-bottom: 20px;
   background-image: url("/images/logo.png");
-  background-size: 684px 306px;
+  background-size: 447px 200px;
+  background-repeat: no-repeat;
 }
 
 .close-x {
