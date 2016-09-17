@@ -22,7 +22,7 @@ defmodule RocketLaunches.Location do
   def update locations do
     Repo.delete_all Location
     locations
-    |> Enum.map(&(%{name: &1["name"], country: &1["countryCode"]}))
+    |> Enum.map(&(Location.for(&1)))
     |> Enum.uniq
     |> Enum.each(fn (location) ->
       %Location{}
@@ -30,6 +30,11 @@ defmodule RocketLaunches.Location do
       |> Repo.insert
     end)
     :ok
+  end
+
+  def for launch do
+    location = launch["location"]
+    %{name: location["name"], country: location["countryCode"]}
   end
 
 end

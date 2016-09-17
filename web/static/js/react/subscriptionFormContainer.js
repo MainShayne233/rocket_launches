@@ -6,10 +6,7 @@ class SubscriptionFormContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      rockets: [],
-      locations: [],
-    }
+    this.state = {}
   }
 
   componentWillMount() {
@@ -25,7 +22,7 @@ class SubscriptionFormContainer extends Component {
 
   hasAllNecessaryApiData() {
     for (const type of this.necessaryApiDataTables()) {
-      if (!this.state[type].length) {
+      if (this.state && !this.state[type]) {
         return false
       }
     }

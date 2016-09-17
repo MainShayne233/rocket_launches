@@ -13,33 +13,33 @@ class SubscriptionForm extends Component {
   handleSubmit(event) {
     event.preventDefault()
     this.createSubscription()
-    this.refs.form.clearFields()
   }
 
   createSubscription() {
-    const subscription = this.refs.form.fieldValues()
+    let subscription = this.refs.form.fieldValues()
+    var jstz = require('jstimezonedetect');
+    subscription.time_zone = jstz.determine().name()
     axios.post('/create', {
       subscription: subscription
     })
-         .then((response) => {
-           console.log(response.data)
-           if (response.data == "success") {
-             this.setState({
-               message: {
-                 content: "You have successfully signed up for launch notifications! 🚀",
-                 type: "success",
-               },
-             })
-           } else {
-             this.setState({
-               message: {
-                 content: "Houston, we have a problem. ☹️",
-                 subcontent: "Something went wrong. Maybe try refreshing and making another attempt?",
-                 type: "negative",
-               },
-             })
-           }
+     .then((response) => {
+       if (response.data == "success") {
+         this.setState({
+           message: {
+             content: "You have successfully signed up for launch notifications! 🚀",
+             type: "success",
+           },
+         }, this.refs.form.clearFields())
+       } else {
+         this.setState({
+           message: {
+             content: "Houston, we have a problem. ☹️",
+             subcontent: "Something went wrong. Maybe try refreshing and making another attempt?",
+             type: "negative",
+           },
          })
+       }
+     })
   }
 
   dismissMessage() {

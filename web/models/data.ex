@@ -8,7 +8,6 @@ defmodule RocketLaunches.Data do
     { :ok, data } = "https://launchlibrary.net/1.1/launch/next/50"
                     |> get
     launches = Launch.from(data)
-    launches
     |> Rocket.update
     launches
     |> Location.update
@@ -27,6 +26,23 @@ defmodule RocketLaunches.Data do
          {:error, %HTTPoison.Error{reason: reason}} ->
            {:error, reason}
        end
+  end
+
+  def today_for time_zone do
+    Timex.now(time_zone)
+    |> parsed_date_time
+  end
+
+  def parsed_date_time date_time do
+    %{
+      month:    date_time |> Timex.format!("%B", :strftime),
+      day:      date_time |> Timex.format!("%e", :strftime),
+      year:     date_time |> Timex.format!("%G", :strftime),
+      hour:     date_time |> Timex.format!("%l", :strftime),
+      min:      date_time |> Timex.format!("%M", :strftime),
+      sec:      date_time |> Timex.format!("%S", :strftime),
+      meridian: date_time |> Timex.format!("%p", :strftime)
+    }
   end
 
 
