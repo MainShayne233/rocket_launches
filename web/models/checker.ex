@@ -12,9 +12,7 @@ defmodule RocketLaunches.Checker do
   end
 
   def handle_info :work, state do
-    IO.inspect  ExTwilio.Message.create to: "3212929136",
-                            from: "18442422517",
-                            body: "poop"
+    IO.inspect  ExTwilio.Message.create(to: "3212929136", from: "18442422517",  body: "poop")
     schedule_work
     {:noreply, state}
   end
