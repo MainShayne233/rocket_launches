@@ -1,8 +1,10 @@
 defmodule RocketLaunches.Subscription do
+  import Ecto.Query
   use RocketLaunches.Web, :model
   alias RocketLaunches.Repo
   alias RocketLaunches.Subscription
   alias RocketLaunches.Data
+  alias RocketLaunches.Time
 
 
   schema "subscriptions" do
@@ -28,9 +30,20 @@ defmodule RocketLaunches.Subscription do
      Repo.all Subscription
   end
 
-  def is_ten_for subscription do
-    subscription.time_zone
-    |> Data.today_for
-    |> IO.inspect
+  def all_where_is_ten do
+    zones = Time.zones_where_is_ten
+    query = from sub in Subscription,
+            where: sub.time_zone in ^zones,
+            select: sub
+    Repo.all query
+  end
+
+  def interested_in launch do
+    all_where_is_ten
+    |> Enum.filter(fn sub ->
+      IO.inspect sub
+         (Enum.empty?(sub.rockets) or Enum.member?(sub.rockets, launch.rocket)) and
+         (Enum.empty?(sub.locations) or Enum.member?(sub.locations, launch.location.name))
+       end)
   end
 end

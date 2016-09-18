@@ -3,6 +3,7 @@ defmodule RocketLaunches.Launch do
   alias RocketLaunches.Mission
   alias RocketLaunches.Rocket
   alias RocketLaunches.Location
+  alias RocketLaunches.Time
 
 
   def next_ten do
@@ -12,12 +13,11 @@ defmodule RocketLaunches.Launch do
   end
 
   def all_today do
-    today = Data.today
     next_ten
-    |> Enum.filter(fn (launch) ->
-        Map.delete(launch.windows.start, :time) == Map.delete(today, :time)
+    |> Enum.filter(fn launch ->
+         Time.is_today?(launch.windows.start) and
+         !Time.passed?(launch.windows.end)
        end)
-    |> IO.inspect
   end
 
   def from data do
@@ -25,7 +25,6 @@ defmodule RocketLaunches.Launch do
   end
 
   def useful_data launch do
-    IO.inspect launch
     %{
       rocket: Rocket.for(launch),
       location: Location.for(launch),
@@ -44,7 +43,6 @@ defmodule RocketLaunches.Launch do
 
   def parse_date_for window do
     Timex.parse!(window, "%B %e, %G %T %Z", :strftime)
-    |> Data.parsed_date_time
   end
 
 

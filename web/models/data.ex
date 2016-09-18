@@ -1,7 +1,6 @@
 defmodule RocketLaunches.Data do
   alias RocketLaunches.Rocket
   alias RocketLaunches.Location
-  alias RocketLaunches.Data
   alias RocketLaunches.Launch
 
   def update do
@@ -27,24 +26,5 @@ defmodule RocketLaunches.Data do
            {:error, reason}
        end
   end
-
-  def today_for time_zone do
-    Timex.now(time_zone)
-    |> parsed_date_time
-  end
-
-  def parsed_date_time date_time do
-    %{
-      month:    date_time |> Timex.format!("%B", :strftime),
-      day:      date_time |> Timex.format!("%e", :strftime),
-      year:     date_time |> Timex.format!("%G", :strftime),
-      hour:     date_time |> Timex.format!("%l", :strftime),
-      min:      date_time |> Timex.format!("%M", :strftime),
-      sec:      date_time |> Timex.format!("%S", :strftime),
-      meridian: date_time |> Timex.format!("%p", :strftime)
-    }
-  end
-
-
 
 end

@@ -19,7 +19,7 @@ defmodule RocketLaunches.Mixfile do
   def application do
     [mod: {RocketLaunches, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison, :timex]]
+                    :phoenix_ecto, :postgrex, :httpoison, :timex, :ex_twilio]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,8 @@ defmodule RocketLaunches.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:httpoison, "~> 0.9.0"},
-     {:timex, "~> 3.0"}]
+     {:timex, "~> 3.0"},
+     {:ex_twilio, "~> 0.2.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
