@@ -14,7 +14,7 @@ config :rocket_launches, RocketLaunches.Endpoint,
 # Configure your database
 config :rocket_launches, RocketLaunches.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: System.get_env("DATABASE_USERNAME"),
-  password: System.get_env("DATABASE_PASSWORD"),
+  username: "postgres",
+  password: "postgres",
   database: "rocket_launches_prod",
   pool_size: 20
