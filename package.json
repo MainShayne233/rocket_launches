@@ -13,8 +13,6 @@
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-formation": "file:///Users/shayne/react/formation/react-formation-1.0.0.tgz",
-    "react-npm-boilerplate": "file:///Users/shayne/react/react-npm-boilerplate/react-npm-boilerplate-1.0.0.tgz",
     "timezone": "^1.0.6"
   },
   "devDependencies": {
