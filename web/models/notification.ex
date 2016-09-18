@@ -14,7 +14,7 @@ defmodule RocketLaunches.Notification do
     "#{Time.formatted_time(launch.windows.end, time_zone)}"
   end
 
-  def send_notifications do
+  def send do
     Launch.all_today
     |> Enum.each(fn launch ->
       Subscription.interested_in(launch)
