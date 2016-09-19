@@ -1,6 +1,7 @@
 defmodule RocketLaunches.Checker do
   use GenServer
   alias RocketLaunches.Notification
+  alias RocketLaunches.Data
 
   def start_link do
     GenServer.start_link __MODULE__, %{}
@@ -12,14 +13,14 @@ defmodule RocketLaunches.Checker do
   end
 
   def handle_info :work, state do
-    ExTwilio.Message.create(to: "3212929136", from: "18442422517",  body: "poop")
-    |> IO.inspect
+    Notification.send
+    Data.update
     schedule_work
     {:noreply, state}
   end
 
   defp schedule_work do
-    Process.send_after self, :work, 1000 * 10
+    Process.send_after self, :work, 1000 * 60 * 60
   end
 
 end
