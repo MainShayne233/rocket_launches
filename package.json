@@ -13,6 +13,7 @@
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-select": "^1.0.0-rc.1",
     "timezone": "^1.0.6"
   },
   "devDependencies": {
