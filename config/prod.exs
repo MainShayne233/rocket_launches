@@ -10,7 +10,7 @@ use Mix.Config
 # or recreate for your teammates (or you later on).
 config :rocket_launches, RocketLaunches.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "http", host: "rocketlaunches.space.com", port: 443],
+  url: [scheme: "https", host: "rocketlaunches.space.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")#"hOKRGtZE0AM0osO+1yxBAax9kXdfTUSu/jEiv1By+W47Uq9mvyQSQjLmfzrYORqw"
