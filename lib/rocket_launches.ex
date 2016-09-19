@@ -14,7 +14,7 @@ defmodule RocketLaunches do
       supervisor(RocketLaunches.Endpoint, []),
       # Start your own worker by calling: RocketLaunches.Worker.start_link(arg1, arg2, arg3)
       # worker(RocketLaunches.Worker, [arg1, arg2, arg3]),
-      worker(RocketLaunches.Checker, [])
+      # worker(RocketLaunches.Checker, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
