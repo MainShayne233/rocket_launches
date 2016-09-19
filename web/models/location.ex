@@ -22,6 +22,7 @@ defmodule RocketLaunches.Location do
   def update locations do
     Repo.delete_all Location
     locations
+    |> IO.inspect
     |> Enum.map(&(Location.for(&1)))
     |> Enum.uniq
     |> Enum.each(fn (location) ->

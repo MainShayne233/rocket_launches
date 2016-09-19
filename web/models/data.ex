@@ -7,6 +7,8 @@ defmodule RocketLaunches.Data do
     { :ok, data } = "https://launchlibrary.net/1.1/launch/next/50"
                     |> get
     launches = Launch.from(data)
+
+    launches
     |> Rocket.update
     launches
     |> Location.update
